@@ -11,6 +11,7 @@ workdir /app
 ADD lib  ./lib
 add config ./config
 add mix.* ./
+ADD Dockerrun.aws.json ./
 RUN mix local.rebar
 RUN mix local.hex --force
 RUN mix deps.get
