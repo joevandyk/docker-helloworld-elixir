@@ -7,6 +7,8 @@ RUN apk --update add \
   erlang-crypto && \
   rm -rf /var/cache/apk/*
 
-COPY helloworld /usr/local/bin/helloworld
+run mkdir /app
+workdir /app
+COPY helloworld /app
 
-ENTRYPOINT ["/usr/local/bin/helloworld"]
+ENTRYPOINT ["/app/helloworld"]

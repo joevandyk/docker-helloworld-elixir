@@ -5,3 +5,8 @@
 erl_crash.dump
 *.ez
 helloworld
+
+# Elastic Beanstalk Files
+.elasticbeanstalk/*
+!.elasticbeanstalk/*.cfg.yml
+!.elasticbeanstalk/*.global.yml
