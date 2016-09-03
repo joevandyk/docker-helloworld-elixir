@@ -1,13 +1,16 @@
-FROM trenpixster/elixir:1.3.2
+FROM trenpixster/elixir:1.2.0
 
 ENV PORT 80
 EXPOSE $PORT
 
 # Install Elixir Deps
 ADD mix.* ./
-RUN MIX_ENV=prod mix local.rebar
-RUN MIX_ENV=prod mix local.hex --force
-RUN MIX_ENV=prod mix deps.get
+ENV MIX_ENV prod
+RUN mix local.rebar
+RUN mix local.hex --force
+RUN mix deps.get
+RUN mix compile
+RUN mix escript.build
 
 run mkdir /app
 workdir /app
