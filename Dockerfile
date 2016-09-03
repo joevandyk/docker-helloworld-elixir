@@ -13,4 +13,5 @@ run mkdir /app
 workdir /app
 COPY helloworld /app
 
+expose 80
 ENTRYPOINT ["/app/helloworld"]
