@@ -1,11 +1,13 @@
-FROM msaraiva/erlang:18.1
+FROM trenpixster/elixir:1.3.2
 
 ENV PORT 80
 EXPOSE $PORT
 
-RUN apk --update add \
-  erlang-crypto && \
-  rm -rf /var/cache/apk/*
+# Install Elixir Deps
+ADD mix.* ./
+RUN MIX_ENV=prod mix local.rebar
+RUN MIX_ENV=prod mix local.hex --force
+RUN MIX_ENV=prod mix deps.get
 
 run mkdir /app
 workdir /app
